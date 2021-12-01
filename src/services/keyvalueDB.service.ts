@@ -24,11 +24,12 @@ export class KeyValueDB implements OnModuleInit {
 
 			this.cache = JSON.parse( dbString );
 		}catch( readErr ){
-			console.error( readErr );
+			console.info( "Database does not exist, attempting to create a new database" );
 
 			try{
 				this.cache = {};
 				this.Save();
+				console.info( "Successfully created a new database" );
 			}catch( createErr ){
 				throw createErr;
 			}
